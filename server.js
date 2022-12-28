@@ -1,6 +1,7 @@
 const express = require('express')
 const downloadRoute = require("./Routes/downloads")
 const {connectToMongoDb} = require("./db")
+const PORT = 3000 || process.env.PORT
 
 const app = express()
 connectToMongoDb()
@@ -11,6 +12,6 @@ app.get("/", (req, res)=>{
 })
 
 
-app.listen(3000, () =>{
+app.listen(PORT, () =>{
     console.log("server started on port 3000")
 })
