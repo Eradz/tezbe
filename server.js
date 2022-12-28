@@ -1,6 +1,17 @@
 const express = require('express')
-const app = express()
+const downloadRoute = require("./Routes/downloads")
+const {connectToMongoDb} = require("./db")
+const PORT = 3000 || process.env.PORT
 
-app.listen(3000, () =>{
-    console.log("server started on port 5000")
+const app = express()
+connectToMongoDb()
+
+app.use("/download", downloadRoute)
+app.get("/", (req, res)=>{
+    res.send("Hello and welcome")
+})
+
+
+app.listen(PORT, () =>{
+    console.log("server started on port 3000")
 })
