@@ -9,16 +9,12 @@ router.get("/", (req, res)=>{
 })
 router.get("/:id", async (req, res)=>{
   const id = req.params.id
+  const pdf = await pdfModel.findById(id)
   try{
-   const pdf = await pdfModel.findById(id)
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=${pdf.fileName}.pdf`);
+   res.setHeader('Content-Type', 'application/pdf');
+   res.setHeader('Content-Disposition', `attachment; filename=${pdf.fileName}.pdf`);
       const url = pdf.url
       request.get(url).pipe(res)
-      .on('close', () => {
-        res.send('File downloaded!');
-    })  
-      
   }catch(err){
     res.redirect("/")
     console.log(`There was an error: ${err}`)
