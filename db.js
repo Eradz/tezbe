@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
+require("dotenv").config()
 
-const URI = "mongodb+srv://tezonteam:tezonece22@pdfdownloadcluster.tyatu8a.mongodb.net/?retryWrites=true&w=majority"
+const URI = process.env.URI
+
 mongoose.set('strictQuery', true);
 function connectToMongoDb(){
   mongoose.connect(URI)
