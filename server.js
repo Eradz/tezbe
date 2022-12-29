@@ -9,6 +9,7 @@ connectToMongoDb()
 
 app.use(express.json())
 app.use("/download", downloadRoute)
+// use localhost:3000/upload to upload your files
 app.use("/upload", uploadRoute)
 app.get("/", (req, res)=>{
     res.send("Hello and welcome")
